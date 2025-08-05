@@ -1,0 +1,56 @@
+int green = 2;
+int red = 4;
+int yellow = 3;
+int butt = 13;
+int butt2 = 12;
+int onoff = 0;
+
+/*segure o 1º botão enquanto a luz amarela
+pisca no primeiro modo para trocar para o 2º modo*/
+/*segure o 2º botão quando a luz amarela ascende
+no segundo modo para voltar ao 1º modo*/
+
+void setup () {
+  pinMode (green, OUTPUT);
+  pinMode (red, OUTPUT);
+  pinMode (yellow, OUTPUT);
+  pinMode (butt, INPUT);
+}
+
+void loop () { 
+  int buttS = digitalRead(butt);
+  int buttSS = digitalRead(butt2);
+  
+  if (buttS == HIGH) {
+    onoff = 1;
+    delay(1000);
+  }
+  
+  if (buttSS == HIGH) {
+    onoff = 0;
+    delay(1000);
+  }
+  
+  if (onoff == 1) {
+    digitalWrite (red, HIGH);
+    digitalWrite (green, LOW);
+    digitalWrite (yellow, LOW);
+    delay(30000);
+
+    digitalWrite (green, HIGH);
+    digitalWrite (red, LOW);
+    digitalWrite (yellow, LOW);
+    delay(30000);
+
+    digitalWrite (yellow, HIGH);
+    digitalWrite (green, LOW);
+    digitalWrite (red, LOW);
+    delay(5000);
+  } else if (onoff == 0) {
+    digitalWrite (yellow, HIGH);
+    delay (1500);
+    digitalWrite (yellow, LOW);
+    delay (1500);
+  }
+  delay(10);
+}
